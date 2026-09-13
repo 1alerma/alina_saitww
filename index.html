@@ -6,9 +6,13 @@
 <title>Alina Kulyk — Vermögensberater-Assistentin (DVAG) | финансовый консультант в Германии</title>
 <meta name="description" content="Alina Kulyk, Vermögensberater-Assistentin bei der Deutschen Vermögensberatung (DVAG), Direktion 820. Finanzplanung, Versicherungen, Altersvorsorge, Vermögensaufbau — kostenloses Erstgespräch auf Deutsch oder Russisch.">
 <meta name="robots" content="index, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Google Fonts are intentionally NOT loaded here. Loading fonts directly from
+     Google's servers before user consent transmits the visitor's IP address to
+     Google, which German courts (e.g. LG München I, 3 O 17493/20) have treated
+     as requiring prior consent. The stylesheet is instead injected by JS only
+     after the visitor accepts the notice banner (see loadGoogleFonts() below),
+     or immediately if they already consented in a previous visit. Until then
+     the site renders with the system-font fallbacks defined in --serif/--sans. -->
 <style>
   :root{
     --bg: #FAF7F2;
@@ -135,6 +139,11 @@
     animation:hero-line .8s ease .35s both;
   }
   @keyframes hero-line{from{width:0; opacity:0;}to{width:54px; opacity:1;}}
+  .hero-badge{display:inline-flex; align-items:center; gap:10px; padding:5px 14px 5px 8px; border:1px solid rgba(255,255,255,0.3); border-radius:999px; margin-bottom:22px; animation:hero-text .8s ease .15s both;}
+  .hero-badge-logo{height:20px; width:auto; max-width:120px; object-fit:contain; background:#fff; padding:4px 8px; border-radius:4px;}
+  .hero-badge.img-broken{padding-left:14px;}
+  .hero-badge.img-broken .hero-badge-logo{display:none;}
+  .hero-badge span{font-size:0.78rem; letter-spacing:0.02em; color:#CFDAD4;}
   .hero h1{font-size:clamp(2.05rem, 3.4vw, 3rem); max-width:14ch; color:#fff; animation:hero-text .8s ease .25s both;}
   @keyframes hero-text{from{opacity:0; transform:translateY(18px);}to{opacity:1; transform:translateY(0);}}
   .hero .lede{margin-top:22px; font-size:1.1rem; max-width:46ch;}
@@ -297,7 +306,9 @@
 
   /* ---------- DVAG PARTNER ---------- */
   .dvag-section{border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .dvag-inner{display:flex; flex-direction:column; gap:14px; max-width:820px;}
+  .dvag-inner{display:flex; flex-direction:column; align-items:flex-start; gap:14px; max-width:820px;}
+  .dvag-inner-logo{height:34px; width:auto; max-width:220px; object-fit:contain; margin-bottom:2px;}
+  .dvag-inner-logo:not([src]), .dvag-inner-logo.img-broken{display:none;}
   .dvag-label{font-size:0.85rem; color:var(--gold); letter-spacing:0.02em;}
   .dvag-inner h2{font-size:clamp(1.4rem, 2.2vw, 1.9rem);}
   .dvag-inner p{font-size:1.03rem; max-width:70ch;}
@@ -338,6 +349,10 @@
   .field input:focus, .field textarea:focus, .field select:focus{outline:none; border-color:var(--accent);}
   form.booking .btn{width:100%; justify-content:center; margin-top:4px;}
   .form-fine{margin-top:13px; font-size:0.8rem; color:var(--ink-soft);}
+  .field-consent{margin-top:22px; margin-bottom:20px;}
+  .consent-label{display:flex; align-items:flex-start; gap:10px; font-size:0.85rem; line-height:1.45; color:var(--ink-soft); cursor:pointer;}
+  .consent-label input[type="checkbox"]{margin-top:3px; width:17px; height:17px; flex-shrink:0; accent-color:var(--accent); cursor:pointer;}
+  .consent-label a{color:var(--accent); text-decoration:underline; text-underline-offset:2px;}
   .form-status{margin-top:13px; font-size:0.88rem; min-height:1.2em;}
   .form-status.success{color:var(--accent-deep); font-weight:500;}
   .form-status.error{color:#a13c3c; font-weight:500;}
@@ -346,6 +361,9 @@
   footer{padding:44px 0; border-top:1px solid var(--line);}
   .footer-inner{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
   .footer-inner .brand{font-size:1.02rem;}
+  .footer-brand-group{display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .footer-logo{height:22px; width:auto; max-width:130px; object-fit:contain; opacity:0.85;}
+  .footer-logo:not([src]), .footer-logo.img-broken{display:none;}
   .footer-links{display:flex; gap:22px; font-size:0.88rem; color:var(--ink-soft);}
   .footer-links a:hover{color:var(--ink);}
   .footer-social{display:flex; gap:16px;}
@@ -510,6 +528,10 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <div class="hero-badge">
+          <img src="logo-dvag.png" alt="Deutsche Vermögensberatung" class="hero-badge-logo" onerror="this.parentElement.classList.add('img-broken')">
+          <span data-i18n="hero-badge-text">Партнёр Deutsche Vermögensberatung</span>
+        </div>
         <h1 data-i18n="hero-h1">Финансы должны работать на вас, а не вы на них.</h1>
         <p class="lede" data-i18n="hero-lede">Я помогаю разобраться в личных финансах без сложных терминов — от защиты и пенсии до накоплений и инвестиций — и собрать это в понятную стратегию, которая работает именно на ваши цели.</p>
         <div class="hero-actions">
@@ -530,17 +552,17 @@
         <span class="quick-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 2v4M17 2v4M3 9h18M8 13h3M8 17h5"/></svg></span>
         <span class="quick-label" data-i18n="quick-appointment">Записаться на встречу</span>
       </a>
-      <a class="quick-item reveal" href="tel:+491603844042">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M6.5 3.5l3 2.5-2 3.2c1.1 2.4 2.9 4.2 5.3 5.3l3.2-2 2.5 3c.5.6.4 1.5-.2 2l-1.8 1.4c-.7.5-1.6.7-2.4.4-6.1-2.1-10-6-12.1-12.1-.3-.8-.1-1.7.4-2.4l1.4-1.8c.7-.6 1.6-.7 2.2-.1z"/></svg></span>
-        <span class="quick-label" data-i18n="quick-call">Позвонить</span>
-      </a>
-      <a class="quick-item reveal save-contact-action" href="#">
-        <span class="quick-icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="9" r="2.5"/><path d="M8 16c.8-2 7.2-2 8 0M16 3v5h4"/></svg></span>
-        <span class="quick-label" data-i18n="quick-save">Сохранить контакт</span>
+      <a class="quick-item reveal" href="https://t.me/dvag_alina" target="_blank" rel="noopener">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M21 4L2.5 11.3c-1 .4-1 1.6.1 1.9l4.4 1.4 1.7 5.3c.3.9 1.5 1.1 2.1.3l2.5-3 4.6 3.4c.8.6 2 .2 2.2-.8L22.8 5.4c.2-1-.8-1.8-1.8-1.4z"/><path d="M8.9 14.6l9-7.2-7.5 8.6"/></svg></span>
+        <span class="quick-label" data-i18n="quick-telegram">Telegram</span>
       </a>
       <a class="quick-item reveal" href="#faq">
         <span class="quick-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.7 9a2.4 2.4 0 1 1 3.7 2c-1 .7-1.4 1-1.4 2.2M12 16.5h.01"/></svg></span>
         <span class="quick-label" data-i18n="quick-faq">Частые вопросы</span>
+      </a>
+      <a class="quick-item reveal" href="#why">
+        <span class="quick-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></svg></span>
+        <span class="quick-label" data-i18n="quick-dvag">О DVAG</span>
       </a>
     </div>
   </section>
@@ -618,6 +640,7 @@
       <div class="why-grid" id="whyGrid"></div>
     </div>
     <div class="wrap dvag-inner" style="margin-top:64px; padding-top:56px; border-top:1px solid var(--line);">
+      <img src="logo-dvag.png" alt="Deutsche Vermögensberatung" class="dvag-inner-logo" onerror="this.classList.add('img-broken')">
       <span class="dvag-label" data-i18n="dvag-label">Партнёр</span>
       <h2 data-i18n="dvag-h2">Deutsche Vermögensberatung</h2>
       <p data-i18n="dvag-p">На протяжении 50 лет компания Deutsche Vermögensberatung (DVAG) является успешным семейным бизнесом в финансовом секторе. Будучи крупнейшей независимой финансовой консалтинговой фирмой Германии, она уже помогает около 8 миллионам человек во всех секторах в вопросах страхования, планирования выхода на пенсию и накопления капитала.</p>
@@ -649,7 +672,7 @@
           <p data-i18n="apply-lede">Укажите тему, которая вам интересна, и оставьте контакты — я свяжусь с вами лично.</p>
         </div>
         <div class="contact-intro">
-          <p style="margin-top:26px;" data-i18n="contact-intro">Первая консультация бесплатна. Можно очно или онлайн — как вам удобнее.</p>
+          <p style="margin-top:26px;" data-i18n="contact-intro">Бесплатная консультация. Можно очно или онлайн — как вам удобнее.</p>
         </div>
         <p class="contact-methods-label" data-i18n="contact-methods-label">Свяжитесь со мной напрямую:</p>
         <div class="contact-methods">
@@ -679,8 +702,6 @@
           <p>Zündorfer Straße 26</p>
           <p>51145 Köln</p>
           <a class="route-link" href="https://www.google.com/maps/search/?api=1&query=Z%C3%BCndorfer+Stra%C3%9Fe+26%2C+51145+K%C3%B6ln" target="_blank" rel="noopener" data-i18n="contact-route">Проложить маршрут до офиса →</a>
-          <br>
-          <button type="button" class="btn btn-small save-contact-action" id="saveContactBtn" data-i18n="save-contact">Сохранить контакт</button>
         </div>
       </div>
 
@@ -708,6 +729,12 @@
         <div class="field">
           <label for="msg" data-i18n="form-msg-label">Комментарий (необязательно)</label>
           <textarea id="msg" name="Комментарий / Nachricht"></textarea>
+        </div>
+        <div class="field field-consent">
+          <label class="consent-label" for="consent">
+            <input type="checkbox" id="consent" name="Согласие на обработку данных / Einwilligung" value="Да / Ja" required>
+            <span id="consentText"></span>
+          </label>
         </div>
         <button type="submit" class="btn btn-primary" data-i18n="form-submit">Отправить заявку</button>
         <p class="form-fine" data-i18n="form-fine">Отвечаю в течение одного рабочего дня.</p>
@@ -744,7 +771,10 @@
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <div class="brand" data-i18n="brand">Алина Кулик</div>
+      <div class="footer-brand-group">
+        <div class="brand" data-i18n="brand">Алина Кулик</div>
+        <img src="logo-dvag.png" alt="Deutsche Vermögensberatung" class="footer-logo" onerror="this.classList.add('img-broken')">
+      </div>
       <div class="footer-links">
         <a href="#about" data-i18n="nav-about">Обо мне</a>
         <a href="#services" data-i18n="nav-services">Услуги</a>
@@ -813,8 +843,8 @@ const TEXT = {
     "footer-impressum":"Impressum","footer-datenschutz":"Datenschutz","cookie-ok":"Понятно",
     "hero-h1":"Финансы должны работать на вас, а не вы на них.",
     "hero-lede":"Я помогаю разобраться в личных финансах без сложных терминов — от защиты и пенсии до накоплений и инвестиций — и собрать это в понятную стратегию, которая работает именно на ваши цели.",
-    "hero-cta":"Первая консультация","hero-note":"","hero-photo-label":"Ваше фото — открытое и живое",
-    "contact-name":"Алина Кулик","quick-appointment":"Записаться на встречу","quick-call":"Позвонить","quick-save":"Сохранить контакт","quick-faq":"Частые вопросы",
+    "hero-cta":"Первая консультация","hero-note":"","hero-photo-label":"Ваше фото — открытое и живое","hero-badge-text":"Партнёр Deutsche Vermögensberatung",
+    "contact-name":"Алина Кулик","quick-appointment":"Записаться на встречу","quick-telegram":"Telegram","quick-faq":"Частые вопросы","quick-dvag":"О DVAG",
     "about-quote":"Финансы — это не про цифры. Это про вашу жизнь и ваше будущее.",
     "about-p1":"Меня зовут Алина Кулик. Я помогаю людям в Германии принимать более уверенные решения в вопросах финансов, защиты и будущего.",
     "about-p2":"Я убеждена: хорошая финансовая консультация начинается не с продукта, а с человека.",
@@ -840,7 +870,7 @@ const TEXT = {
     "dvag-label":"Партнёр","dvag-h2":"Deutsche Vermögensberatung",
     "dvag-p":"На протяжении 50 лет компания Deutsche Vermögensberatung (DVAG) является успешным семейным бизнесом в финансовом секторе. Будучи крупнейшей независимой финансовой консалтинговой фирмой Германии, она уже помогает около 8 миллионам человек во всех секторах в вопросах страхования, планирования выхода на пенсию и накопления капитала. Наша миссия — сделать финансовую уверенность доступной каждому: мы верим, что любой человек может построить своё благополучие, а мы, консультанты DVAG, сопровождаем его на этом пути как настоящий финансовый коуч.",
     "apply-default-h2":"Оставьте заявку","apply-lede":"Укажите тему, которая вам интересна, и оставьте контакты — я свяжусь с вами лично.",
-    "contact-intro":"Первая консультация бесплатна. Можно очно или онлайн — как вам удобнее.",
+    "contact-intro":"Бесплатная консультация. Можно очно или онлайн — как вам удобнее.",
     "contact-methods-label":"Свяжитесь со мной напрямую:",
     "form-topic-label":"Тема заявки","form-name-label":"Имя","form-phone-label":"Телефон","form-email-label":"Email",
     "form-msg-label":"Комментарий (необязательно)","form-submit":"Отправить заявку","form-fine":"Отвечаю в течение одного рабочего дня.",
@@ -848,7 +878,7 @@ const TEXT = {
     "form-sending":"Отправка...","form-success":"Спасибо! Заявка отправлена, я свяжусь с вами в течение одного рабочего дня.",
     "form-error":"Не удалось отправить заявку. Попробуйте ещё раз или напишите мне напрямую в Telegram.",
     "footer-fine":"© 2026 Алина Кулик. Финансовый консультант DVAG.",
-    "contact-card-title":"Мои контактные данные","contact-route":"Проложить маршрут до офиса →","save-contact":"Сохранить контакт",
+    "contact-card-title":"Мои контактные данные","contact-route":"Проложить маршрут до офиса →",
   },
   de: {
     "brand":"Alina Kulyk",
@@ -860,7 +890,7 @@ const TEXT = {
     "footer-impressum":"Impressum","footer-datenschutz":"Datenschutz","cookie-ok":"Verstanden",
     "hero-h1":"Ihre Finanzen sollten für Sie arbeiten — nicht Sie für sie.",
     "hero-lede":"Ich helfe Ihnen, Ihre persönlichen Finanzen ohne komplizierte Fachbegriffe zu verstehen — von Absicherung und Altersvorsorge bis hin zu Sparen und Investitionen — und daraus eine klare Strategie zu entwickeln, die auf Ihre Ziele ausgerichtet ist.",
-    "hero-cta":"Erstgespräch","hero-note":"","hero-photo-label":"Ihr Foto — offen und lebendig",
+    "hero-cta":"Erstgespräch","hero-note":"","hero-photo-label":"Ihr Foto — offen und lebendig","hero-badge-text":"Partner der Deutschen Vermögensberatung",
     "about-quote":"Bei Finanzen geht es nicht um Zahlen. Es geht um Ihr Leben und Ihre Zukunft.",
     "about-p1":"Mein Name ist Alina Kulyk. Ich helfe Menschen in Deutschland, sicherere Entscheidungen in Fragen der Finanzen, Absicherung und Zukunft zu treffen.",
     "about-p2":"Ich bin überzeugt: Eine gute Finanzberatung beginnt nicht mit einem Produkt, sondern mit dem Menschen.",
@@ -894,8 +924,8 @@ const TEXT = {
     "form-sending":"Wird gesendet...","form-success":"Vielen Dank! Ihre Anfrage wurde gesendet, ich melde mich innerhalb eines Werktages bei Ihnen.",
     "form-error":"Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt über Telegram.",
     "footer-fine":"© 2026 Alina Kulyk. Finanzberaterin DVAG.",
-    "contact-name":"Alina Kulyk","contact-card-title":"Meine Kontaktdaten","contact-route":"Route zum Büro planen →","save-contact":"Kontakt speichern",
-    "quick-appointment":"Termin anfragen","quick-call":"Anrufen","quick-save":"Kontaktdaten herunterladen","quick-faq":"Häufig gestellte Fragen",
+    "contact-name":"Alina Kulyk","contact-card-title":"Meine Kontaktdaten","contact-route":"Route zum Büro planen →",
+    "quick-appointment":"Termin anfragen","quick-telegram":"Telegram","quick-faq":"Häufig gestellte Fragen","quick-dvag":"Über DVAG",
   }
 };
 
@@ -1182,9 +1212,10 @@ const DATENSCHUTZ = {
     <h4>2. Какие данные собираются</h4>
     <p>При заполнении формы заявки на сайте передаются: имя, телефон, email, тема обращения и комментарий. Эти данные используются исключительно для того, чтобы связаться с вами по вашему запросу.</p>
     <p>Форма отправляется через сервис <strong>formsubmit.co</strong> — внешнего поставщика услуг, который технически пересылает данные формы на указанный email. Ознакомьтесь с политикой конфиденциальности formsubmit.co на их сайте.</p>
+    <p>Перед отправкой формы вы подтверждаете согласие на обработку указанных данных, отметив соответствующий флажок. Это согласие является правовым основанием обработки согласно Art. 6 Abs. 1 lit. a DSGVO; вы можете отозвать его в любой момент, написав на kulykalina4@gmail.com.</p>
 
     <h4>3. Веб-шрифты Google Fonts</h4>
-    <p>Для отображения текста сайт загружает шрифты Fraunces и Inter с серверов Google (Google Fonts). При этом браузер устанавливает соединение с серверами Google, которым может передаваться IP-адрес устройства.</p>
+    <p>Сайт использует шрифты Fraunces и Inter от Google (Google Fonts). До вашего согласия эти шрифты <strong>не загружаются</strong> — сайт отображается системными шрифтами устройства. Только после того как вы нажмёте «Понятно» в уведомлении внизу страницы (или ранее уже дали согласие), браузер устанавливает соединение с серверами Google, которым при этом может передаваться IP-адрес устройства. Вы можете пользоваться сайтом и отправить заявку и без этого согласия — в этом случае просто используется системный шрифт.</p>
 
     <h4>4. Cookies</h4>
     <p>Сайт не использует cookies для отслеживания или рекламы. Технические cookies могут устанавливаться исключительно используемыми внешними сервисами (Google Fonts, formsubmit.co) в рамках их работы.</p>
@@ -1213,9 +1244,10 @@ const DATENSCHUTZ = {
     <h4>2. Welche Daten werden erhoben</h4>
     <p>Beim Ausfüllen des Anfrageformulars werden übermittelt: Name, Telefonnummer, E-Mail-Adresse, das gewählte Thema sowie ein optionaler Kommentar. Diese Daten werden ausschließlich verwendet, um mit Ihnen zu Ihrer Anfrage Kontakt aufzunehmen.</p>
     <p>Das Formular wird über den Dienst <strong>formsubmit.co</strong> versendet — einen externen Anbieter, der die Formulardaten technisch an die angegebene E-Mail-Adresse weiterleitet. Bitte beachten Sie die Datenschutzhinweise von formsubmit.co.</p>
+    <p>Vor dem Absenden des Formulars bestätigen Sie durch Ankreuzen des Kontrollkästchens Ihre Einwilligung in die Verarbeitung der angegebenen Daten. Diese Einwilligung ist die Rechtsgrundlage der Verarbeitung gemäß Art. 6 Abs. 1 lit. a DSGVO; Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie an kulykalina4@gmail.com schreiben.</p>
 
     <h4>3. Google Fonts</h4>
-    <p>Zur Darstellung der Schriftarten Fraunces und Inter lädt diese Seite Schriften von Servern von Google (Google Fonts). Dabei baut Ihr Browser eine Verbindung zu Google-Servern auf, wobei Ihre IP-Adresse übertragen werden kann.</p>
+    <p>Diese Seite verwendet die Schriftarten Fraunces und Inter von Google (Google Fonts). Vor Ihrer Zustimmung werden diese Schriften <strong>nicht geladen</strong> — die Seite wird mit den Systemschriften Ihres Geräts dargestellt. Erst wenn Sie unten auf „Verstanden" klicken (oder bereits zuvor zugestimmt haben), baut Ihr Browser eine Verbindung zu Google-Servern auf, wobei Ihre IP-Adresse übertragen werden kann. Sie können die Seite auch ohne diese Zustimmung nutzen und das Formular absenden — es wird dann lediglich die Systemschrift verwendet.</p>
 
     <h4>4. Cookies</h4>
     <p>Diese Seite selbst setzt keine Tracking- oder Werbe-Cookies. Technisch bedingte Cookies können ausschließlich durch die eingebundenen externen Dienste (Google Fonts, formsubmit.co) gesetzt werden.</p>
@@ -1457,6 +1489,7 @@ function setLang(lang){
   renderFAQ(lang);
   renderLegalModals(lang);
   renderCookieBanner(lang);
+  renderConsentText(lang);
   populateTopicSelect(lang, preserved);
 }
 
@@ -1524,10 +1557,23 @@ function bindLegalModals(){
   });
 }
 
+/* ---------------- form consent checkbox text ---------------- */
+const CONSENT_TEXT = {
+  ru:'Я соглашаюсь на обработку моих персональных данных, указанных в этой форме, с целью обработки моей заявки и обратной связи со мной, в соответствии с <a href="#" id="consentDatenschutzLink">Политикой конфиденциальности</a>.',
+  de:'Ich willige ein, dass meine in diesem Formular angegebenen personenbezogenen Daten zur Bearbeitung meiner Anfrage und zur Kontaktaufnahme gemäß der <a href="#" id="consentDatenschutzLink">Datenschutzerklärung</a> verarbeitet werden.'
+};
+function renderConsentText(lang){
+  const el = document.getElementById("consentText");
+  if(!el) return;
+  el.innerHTML = CONSENT_TEXT[lang];
+  const link = document.getElementById("consentDatenschutzLink");
+  if(link) link.addEventListener("click", e=>{ e.preventDefault(); openLegalModal("datenschutzModal"); });
+}
+
 /* ---------------- cookie / privacy notice banner ---------------- */
 const COOKIE_TEXT = {
-  ru:'Этот сайт использует внешние веб-шрифты Google Fonts и форму заявки formsubmit.co. Подробности — в <a href="#" id="cookieDatenschutzLink">Политике конфиденциальности</a>.',
-  de:'Diese Seite nutzt die externen Web-Fonts von Google Fonts sowie das Formular von formsubmit.co. Details in der <a href="#" id="cookieDatenschutzLink">Datenschutzerklärung</a>.'
+  ru:'Этот сайт использует форму заявки formsubmit.co. После вашего согласия сайт также подключит внешние веб-шрифты Google Fonts для более удобного отображения текста. Подробности — в <a href="#" id="cookieDatenschutzLink">Политике конфиденциальности</a>.',
+  de:'Diese Seite nutzt das Formular von formsubmit.co. Nach Ihrer Zustimmung lädt die Seite zusätzlich die externen Web-Fonts von Google Fonts für eine bessere Textdarstellung. Details in der <a href="#" id="cookieDatenschutzLink">Datenschutzerklärung</a>.'
 };
 function renderCookieBanner(lang){
   const text = document.getElementById("cookieText");
@@ -1536,15 +1582,41 @@ function renderCookieBanner(lang){
   const link = document.getElementById("cookieDatenschutzLink");
   if(link) link.addEventListener("click", e=>{ e.preventDefault(); openLegalModal("datenschutzModal"); });
 }
+/* ---------------- consent-gated Google Fonts loading ----------------
+   Google Fonts are only requested from Google's servers after the visitor
+   has accepted the notice banner (or already did so on a previous visit).
+   This avoids transmitting the visitor's IP address to Google before consent. */
+let fontsLoaded = false;
+function loadGoogleFonts(){
+  if(fontsLoaded) return;
+  fontsLoaded = true;
+  const preconnect1 = document.createElement("link");
+  preconnect1.rel = "preconnect";
+  preconnect1.href = "https://fonts.googleapis.com";
+  const preconnect2 = document.createElement("link");
+  preconnect2.rel = "preconnect";
+  preconnect2.href = "https://fonts.gstatic.com";
+  preconnect2.crossOrigin = "anonymous";
+  const stylesheet = document.createElement("link");
+  stylesheet.rel = "stylesheet";
+  stylesheet.href = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap";
+  document.head.appendChild(preconnect1);
+  document.head.appendChild(preconnect2);
+  document.head.appendChild(stylesheet);
+}
+
 function bindCookieBanner(){
   const banner = document.getElementById("cookieBanner");
   const accepted = localStorage.getItem("privacyNoticeSeen");
-  if(!accepted){
+  if(accepted){
+    loadGoogleFonts();
+  } else {
     setTimeout(()=> banner.classList.add("show"), 600);
   }
   document.getElementById("cookieAcceptBtn").addEventListener("click", ()=>{
     localStorage.setItem("privacyNoticeSeen", "1");
     banner.classList.remove("show");
+    loadGoogleFonts();
   });
 }
 
@@ -1563,30 +1635,6 @@ function bindMobileMenu(){
       menuBtn.setAttribute("aria-expanded", "false");
     });
   });
-}
-
-function saveContact(){
-  const vcard = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    "FN:Alina Kulyk",
-    "N:Kulyk;Alina;;;",
-    "ORG:DVAG",
-    "TEL;TYPE=WORK,VOICE:+491603844042",
-    "EMAIL;TYPE=WORK:kulykalina4@gmail.com",
-    "ADR;TYPE=WORK:;;Zündorfer Straße 26;Köln;;51145;Deutschland",
-    "URL:https://www.google.com/maps/search/?api=1&query=Z%C3%BCndorfer+Stra%C3%9Fe+26%2C+51145+K%C3%B6ln",
-    "END:VCARD"
-  ].join("\r\n");
-  const blob = new Blob([vcard], {type:"text/vcard;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "Alina-Kulyk.vcf";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
 }
 
 let scrollAnimationObserver = null;
@@ -1624,9 +1672,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   bindCookieBanner();
   bindTabNav();
   bindScrollAnimations();
-  document.querySelectorAll(".save-contact-action").forEach(link=>{
-    link.addEventListener("click", e=>{ e.preventDefault(); saveContact(); });
-  });
   activateTab("about", false);
   if(history.replaceState){
     history.replaceState(null, "", location.pathname + location.search);
